@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2024-10-20-003" author="nikkinicholasromero">
+        <createTable tableName="user_channel">
+            <column name="user_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="channel_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Add foreign key constraints -->
+        <addForeignKeyConstraint
+                baseTableName="user_channel"
+                baseColumnNames="user_id"
+                referencedTableName="user_profile"
+                referencedColumnNames="id"
+                constraintName="fk_user_channel_user"/>
+
+        <addForeignKeyConstraint
+                baseTableName="user_channel"
+                baseColumnNames="channel_id"
+                referencedTableName="channel"
+                referencedColumnNames="id"
+                constraintName="fk_user_channel_channel"/>
+    </changeSet>
+</databaseChangeLog>

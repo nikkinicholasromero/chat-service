@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="1" author="nikkinicholasromero">
+    <changeSet id="2024-10-20-001" author="nikkinicholasromero">
         <createTable tableName="user_profile">
             <column name="id" type="varchar(36)">
                 <constraints primaryKey="true"/>
