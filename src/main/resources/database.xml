@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1" author="nikkinicholasromero">
+        <createTable tableName="user_profile">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(320)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="salt" type="varchar(26)">
+            </column>
+            <column name="hash" type="varchar(64)">
+            </column>
+            <column name="confirmation_code" type="varchar(36)">
+            </column>
+            <column name="confirmed" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_reset_code" type="varchar(36)">
+            </column>
+            <column name="first_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
