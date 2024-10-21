@@ -1,4 +1,4 @@
-package com.chat.user.repository;
+package com.chat.messages.repository;
 
 import com.chat.common.config.Generated;
 import jakarta.persistence.Column;
@@ -11,16 +11,16 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.io.Serializable;
 
 @Embeddable
-public class UserProfileId implements Serializable {
+public class ChannelId implements Serializable {
     @Column(name = "id")
     private String id;
 
     @Generated
-    protected UserProfileId() {
+    protected ChannelId() {
         // Note: Required by JPA. Do not use.
     }
 
-    public UserProfileId(String id) {
+    public ChannelId(String id) {
         if (StringUtils.isBlank(id)) {
             throw new IllegalArgumentException("id is required");
         }
@@ -39,7 +39,7 @@ public class UserProfileId implements Serializable {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserProfileId other = (UserProfileId) o;
+        ChannelId other = (ChannelId) o;
 
         return new EqualsBuilder()
                 .append(id, other.id)

@@ -38,7 +38,5 @@
                 referencedTableName="user_profile"
                 referencedColumnNames="id"
                 constraintName="fk_messages_sender"/>
-
     </changeSet>
-
 </databaseChangeLog>

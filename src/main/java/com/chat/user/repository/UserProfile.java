@@ -1,6 +1,7 @@
 package com.chat.user.repository;
 
 import com.chat.common.config.Generated;
+import com.chat.common.repository.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -80,6 +81,7 @@ public class UserProfile extends BaseEntity<UserProfileId> implements Serializab
         return userProfile;
     }
 
+    @Override
     public UserProfileId id() {
         return id;
     }
@@ -143,10 +145,10 @@ public class UserProfile extends BaseEntity<UserProfileId> implements Serializab
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserProfile user = (UserProfile) o;
+        UserProfile other = (UserProfile) o;
 
         return new EqualsBuilder()
-                .append(id, user.id)
+                .append(id, other.id)
                 .isEquals();
     }
 

@@ -1,4 +1,4 @@
-package com.chat.user.repository;
+package com.chat.common.repository;
 
 import com.chat.common.config.Generated;
 import jakarta.persistence.MappedSuperclass;

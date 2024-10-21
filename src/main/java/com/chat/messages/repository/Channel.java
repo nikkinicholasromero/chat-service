@@ -1,35 +1,39 @@
-package com.chat.user.repository;
+package com.chat.messages.repository;
 
 import com.chat.common.config.Generated;
+import com.chat.common.repository.BaseEntity;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import org.apache.commons.lang3.StringUtils;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
-@Embeddable
-public class UserProfileId implements Serializable {
-    @Column(name = "id")
-    private String id;
+@Entity
+@Table
+public class Channel extends BaseEntity<ChannelId> implements Serializable {
+    @Id
+    private ChannelId id;
+
+    @Column(name = "createdAt")
+    private LocalDateTime createdAt;
 
     @Generated
-    protected UserProfileId() {
+    protected Channel() {
         // Note: Required by JPA. Do not use.
     }
 
-    public UserProfileId(String id) {
-        if (StringUtils.isBlank(id)) {
-            throw new IllegalArgumentException("id is required");
-        }
-
-        this.id = id.strip();
+    @Override
+    public ChannelId id() {
+        return id;
     }
 
-    public String id() {
-        return id;
+    public LocalDateTime createdAt() {
+        return createdAt;
     }
 
     @Override
@@ -39,7 +43,7 @@ public class UserProfileId implements Serializable {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserProfileId other = (UserProfileId) o;
+        Channel other = (Channel) o;
 
         return new EqualsBuilder()
                 .append(id, other.id)
@@ -59,6 +63,7 @@ public class UserProfileId implements Serializable {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
+                .append("createdAt", createdAt)
                 .toString();
     }
 }
