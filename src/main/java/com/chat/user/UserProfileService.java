@@ -253,7 +253,7 @@ public class UserProfileService {
         return StringUtils.trimToEmpty(email).toLowerCase();
     }
 
-    private UserProfile getUserProfile(String email) {
+    public UserProfile getUserProfile(String email) {
         return userProfileRepository.findByEmail(cleanEmail(email)).orElseThrow();
     }
 
