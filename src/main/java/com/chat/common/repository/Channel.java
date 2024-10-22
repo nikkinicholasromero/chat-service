@@ -14,9 +14,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table
-public class Channel extends BaseEntity<ChannelId> implements Serializable {
+public class Channel extends BaseEntity<String> implements Serializable {
     @Id
-    private ChannelId id;
+    @Column(name = "id")
+    private String id;
 
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
@@ -27,7 +28,7 @@ public class Channel extends BaseEntity<ChannelId> implements Serializable {
     }
 
     @Override
-    public ChannelId id() {
+    public String id() {
         return id;
     }
 

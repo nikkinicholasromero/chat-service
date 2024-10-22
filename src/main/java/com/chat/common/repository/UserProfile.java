@@ -13,9 +13,10 @@ import java.io.Serializable;
 
 @Entity
 @Table
-public class UserProfile extends BaseEntity<UserProfileId> implements Serializable {
+public class UserProfile extends BaseEntity<String> implements Serializable {
     @Id
-    private UserProfileId id;
+    @Column(name = "id")
+    private String id;
 
     @Column(name = "email")
     private String email;
@@ -47,7 +48,7 @@ public class UserProfile extends BaseEntity<UserProfileId> implements Serializab
     }
 
     public static UserProfile regular(
-            UserProfileId id,
+            String id,
             String email,
             String salt,
             String hash,
@@ -67,7 +68,7 @@ public class UserProfile extends BaseEntity<UserProfileId> implements Serializab
     }
 
     public static UserProfile social(
-            UserProfileId id,
+            String id,
             String email,
             String firstName,
             String lastName) {
@@ -81,7 +82,7 @@ public class UserProfile extends BaseEntity<UserProfileId> implements Serializab
     }
 
     @Override
-    public UserProfileId id() {
+    public String id() {
         return id;
     }
 

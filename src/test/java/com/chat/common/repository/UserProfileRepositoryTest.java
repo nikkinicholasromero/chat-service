@@ -25,11 +25,6 @@ class UserProfileRepositoryTest {
     }
 
     @Test
-    void instantiate_UserProfileId_invalid() {
-        assertThrows(IllegalArgumentException.class, () -> new UserProfileId(" "));
-    }
-
-    @Test
     void instantiate_UserProfile_regular() {
         String id = UUID.randomUUID().toString();
         String salt = UUID.randomUUID().toString().substring(0, 26);
@@ -41,7 +36,7 @@ class UserProfileRepositoryTest {
         assertThat(target.findByEmail(EMAIL)).isEmpty();
 
         UserProfile expected = UserProfile.regular(
-                new UserProfileId(id),
+                id,
                 EMAIL,
                 salt,
                 hash,
@@ -53,7 +48,7 @@ class UserProfileRepositoryTest {
 
         UserProfile actual = target.findByEmail(EMAIL).orElseThrow();
         assertEquals(expected, actual);
-        assertEquals(id, actual.id().id());
+        assertEquals(id, actual.id());
         assertEquals(EMAIL, actual.email());
         assertEquals(salt, actual.salt());
         assertEquals(hash, actual.hash());
@@ -73,7 +68,7 @@ class UserProfileRepositoryTest {
         assertThat(target.findByEmail(EMAIL)).isEmpty();
 
         UserProfile expected = UserProfile.social(
-                new UserProfileId(id),
+                id,
                 EMAIL,
                 firstName,
                 lastName);
@@ -82,7 +77,7 @@ class UserProfileRepositoryTest {
 
         UserProfile actual = target.findByEmail(EMAIL).orElseThrow();
         assertEquals(expected, actual);
-        assertEquals(id, actual.id().id());
+        assertEquals(id, actual.id());
         assertEquals(EMAIL, actual.email());
         assertNull(actual.salt());
         assertNull(actual.hash());
@@ -145,7 +140,7 @@ class UserProfileRepositoryTest {
         String lastName = "Romero";
 
         return UserProfile.regular(
-                new UserProfileId(id),
+                id,
                 EMAIL,
                 salt,
                 hash,

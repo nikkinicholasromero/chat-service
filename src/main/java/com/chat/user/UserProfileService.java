@@ -9,7 +9,6 @@ import com.chat.common.security.SecurityContextHelper;
 import com.chat.token.dto.SocialProfile;
 import com.chat.user.dto.*;
 import com.chat.common.repository.UserProfile;
-import com.chat.common.repository.UserProfileId;
 import com.chat.common.repository.UserProfileRepository;
 import jakarta.transaction.Transactional;
 import org.apache.commons.lang3.StringUtils;
@@ -53,7 +52,7 @@ public class UserProfileService {
     public void registerUser(RegistrationRequest request) {
         if (request.social()) {
             UserProfile userProfile = UserProfile.social(
-                    new UserProfileId(UUID.randomUUID().toString()),
+                    UUID.randomUUID().toString(),
                     cleanEmail(request.email()),
                     StringUtils.trimToEmpty(request.firstName()),
                     StringUtils.trimToEmpty(request.lastName()));
@@ -67,7 +66,7 @@ public class UserProfileService {
             String confirmationCode = UUID.randomUUID().toString();
 
             UserProfile userProfile = UserProfile.regular(
-                    new UserProfileId(UUID.randomUUID().toString()),
+                    UUID.randomUUID().toString(),
                     cleanEmail(request.email()),
                     salt,
                     hash,

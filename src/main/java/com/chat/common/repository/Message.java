@@ -14,9 +14,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table
-public class Message extends BaseEntity<MessageId> implements Serializable {
+public class Message extends BaseEntity<String> implements Serializable {
     @Id
-    private MessageId id;
+    @Column(name = "id")
+    private String id;
 
     @Column(name = "content")
     private String content;
@@ -36,7 +37,7 @@ public class Message extends BaseEntity<MessageId> implements Serializable {
     }
 
     @Override
-    public MessageId id() {
+    public String id() {
         return id;
     }
 

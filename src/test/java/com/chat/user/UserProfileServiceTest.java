@@ -161,7 +161,7 @@ class UserProfileServiceTest extends BaseUnitTest {
         verify(hashService).hash("some password", "some salt");
         verify(userProfileRepository).save(userProfileCaptor.capture());
         UserProfile actual = userProfileCaptor.getValue();
-        assertThat(actual.id().id()).isNotBlank();
+        assertThat(actual.id()).isNotBlank();
         assertThat(actual.email()).isEqualTo("nikki@gmail.com");
         assertThat(actual.salt()).isEqualTo("some salt");
         assertThat(actual.hash()).isEqualTo("some hash");
@@ -192,7 +192,7 @@ class UserProfileServiceTest extends BaseUnitTest {
         verify(userProfileRepository, never()).findByEmail("nikki@gmail.com");
         verify(userProfileRepository).save(userProfileCaptor.capture());
         UserProfile actual = userProfileCaptor.getValue();
-        assertThat(actual.id().id()).isNotBlank();
+        assertThat(actual.id()).isNotBlank();
         assertThat(actual.email()).isEqualTo("nikki@gmail.com");
         assertNull(actual.salt());
         assertNull(actual.hash());
@@ -218,7 +218,7 @@ class UserProfileServiceTest extends BaseUnitTest {
 
         verify(userProfileRepository).save(userProfileCaptor.capture());
         UserProfile actual = userProfileCaptor.getValue();
-        assertThat(actual.id().id()).isNotBlank();
+        assertThat(actual.id()).isNotBlank();
         assertThat(actual.email()).isEqualTo("nikki@gmail.com");
         assertNull(actual.salt());
         assertNull(actual.hash());

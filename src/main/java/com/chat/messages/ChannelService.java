@@ -29,14 +29,13 @@ public class ChannelService {
     public List<ChannelResponse> getChannels() {
         String email = securityContextHelper.principal().email();
         UserProfile userProfile = userProfileService.getUserProfile(email);
-        List<UserChannel> userChannels = userChannelRepository.findByIdUserId(userProfile.id().id());
+        List<UserChannel> userChannels = userChannelRepository.findByIdUserId(userProfile.id());
         List<String> channelIds = userChannels.stream()
                 .map(UserChannel::id)
                 .map(UserChannelId::channelId)
                 .distinct()
                 .toList();
-        List<Channel> channels = channelRepository.findByIdIdIn(channelIds);
-        // TODO: Fix .id().id()
+        List<Channel> channels = channelRepository.findByIdIn(channelIds);
         // TODO: Given a list of channel, pull all conversation and transform to ChannelResponse object
 
         return List.of();
