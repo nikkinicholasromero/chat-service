@@ -1,7 +1,6 @@
-package com.chat.user.repository;
+package com.chat.common.repository;
 
 import com.chat.common.config.Generated;
-import com.chat.common.repository.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

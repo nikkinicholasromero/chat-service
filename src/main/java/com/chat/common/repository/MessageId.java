@@ -1,39 +1,35 @@
-package com.chat.messages.repository;
+package com.chat.common.repository;
 
 import com.chat.common.config.Generated;
-import com.chat.common.repository.BaseEntity;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.Embeddable;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
-@Entity
-@Table
-public class Channel extends BaseEntity<ChannelId> implements Serializable {
-    @Id
-    private ChannelId id;
-
-    @Column(name = "createdAt")
-    private LocalDateTime createdAt;
+@Embeddable
+public class MessageId implements Serializable {
+    @Column(name = "id")
+    private String id;
 
     @Generated
-    protected Channel() {
+    protected MessageId() {
         // Note: Required by JPA. Do not use.
     }
 
-    @Override
-    public ChannelId id() {
-        return id;
+    public MessageId(String id) {
+        if (StringUtils.isBlank(id)) {
+            throw new IllegalArgumentException("id is required");
+        }
+
+        this.id = id.strip();
     }
 
-    public LocalDateTime createdAt() {
-        return createdAt;
+    public String id() {
+        return id;
     }
 
     @Override
@@ -43,7 +39,7 @@ public class Channel extends BaseEntity<ChannelId> implements Serializable {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        Channel other = (Channel) o;
+        MessageId other = (MessageId) o;
 
         return new EqualsBuilder()
                 .append(id, other.id)
@@ -63,7 +59,6 @@ public class Channel extends BaseEntity<ChannelId> implements Serializable {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
-                .append("createdAt", createdAt)
                 .toString();
     }
 }

@@ -1,10 +1,9 @@
 package com.chat.messages;
 
+import com.chat.common.repository.*;
 import com.chat.common.security.SecurityContextHelper;
 import com.chat.messages.dto.ChannelResponse;
-import com.chat.messages.repository.*;
 import com.chat.user.UserProfileService;
-import com.chat.user.repository.UserProfile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

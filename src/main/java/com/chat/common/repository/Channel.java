@@ -1,35 +1,38 @@
-package com.chat.messages.repository;
+package com.chat.common.repository;
 
 import com.chat.common.config.Generated;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import org.apache.commons.lang3.StringUtils;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
-@Embeddable
-public class ChannelId implements Serializable {
-    @Column(name = "id")
-    private String id;
+@Entity
+@Table
+public class Channel extends BaseEntity<ChannelId> implements Serializable {
+    @Id
+    private ChannelId id;
+
+    @Column(name = "createdAt")
+    private LocalDateTime createdAt;
 
     @Generated
-    protected ChannelId() {
+    protected Channel() {
         // Note: Required by JPA. Do not use.
     }
 
-    public ChannelId(String id) {
-        if (StringUtils.isBlank(id)) {
-            throw new IllegalArgumentException("id is required");
-        }
-
-        this.id = id.strip();
+    @Override
+    public ChannelId id() {
+        return id;
     }
 
-    public String id() {
-        return id;
+    public LocalDateTime createdAt() {
+        return createdAt;
     }
 
     @Override
@@ -39,7 +42,7 @@ public class ChannelId implements Serializable {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        ChannelId other = (ChannelId) o;
+        Channel other = (Channel) o;
 
         return new EqualsBuilder()
                 .append(id, other.id)
@@ -59,6 +62,7 @@ public class ChannelId implements Serializable {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
+                .append("createdAt", createdAt)
                 .toString();
     }
 }

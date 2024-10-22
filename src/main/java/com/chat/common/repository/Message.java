@@ -1,48 +1,59 @@
-package com.chat.messages.repository;
+package com.chat.common.repository;
 
 import com.chat.common.config.Generated;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import org.apache.commons.lang3.StringUtils;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
-@Embeddable
-public class UserChannelId implements Serializable {
-    @Column(name = "userId")
-    private String userId;
+@Entity
+@Table
+public class Message extends BaseEntity<MessageId> implements Serializable {
+    @Id
+    private MessageId id;
+
+    @Column(name = "content")
+    private String content;
+
+    @Column(name = "createdAt")
+    private LocalDateTime createdAt;
 
     @Column(name = "channelId")
     private String channelId;
 
+    @Column(name = "senderId")
+    private String senderId;
+
     @Generated
-    protected UserChannelId() {
+    protected Message() {
         // Note: Required by JPA. Do not use.
     }
 
-    public UserChannelId(String userId, String channelId) {
-        if (StringUtils.isBlank(userId)) {
-            throw new IllegalArgumentException("userId is required");
-        }
-
-        this.userId = userId.strip();
-
-        if (StringUtils.isBlank(channelId)) {
-            throw new IllegalArgumentException("channelId is required");
-        }
-
-        this.channelId = channelId.strip();
+    @Override
+    public MessageId id() {
+        return id;
     }
 
-    public String userId() {
-        return userId;
+    public String content() {
+        return content;
+    }
+
+    public LocalDateTime createdAt() {
+        return createdAt;
     }
 
     public String channelId() {
         return channelId;
+    }
+
+    public String senderId() {
+        return senderId;
     }
 
     @Override
@@ -52,11 +63,10 @@ public class UserChannelId implements Serializable {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserChannelId other = (UserChannelId) o;
+        Message other = (Message) o;
 
         return new EqualsBuilder()
-                .append(userId, other.userId)
-                .append(channelId, other.channelId)
+                .append(id, other.id)
                 .isEquals();
     }
 
@@ -64,8 +74,7 @@ public class UserChannelId implements Serializable {
     @Generated
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(userId)
-                .append(channelId)
+                .append(id)
                 .toHashCode();
     }
 
@@ -73,8 +82,11 @@ public class UserChannelId implements Serializable {
     @Generated
     public String toString() {
         return new ToStringBuilder(this)
-                .append("userId", userId)
+                .append("id", id)
+                .append("content", content)
+                .append("createdAt", createdAt)
                 .append("channelId", channelId)
+                .append("senderId", senderId)
                 .toString();
     }
 }

@@ -1,7 +1,7 @@
 package com.chat;
 
 import com.chat.common.config.AppConfig;
-import com.chat.user.repository.UserProfileRepository;
+import com.chat.common.repository.UserProfileRepository;
 import com.chat.common.security.MdcWrapper;
 import com.chat.common.encryption.JwtService;
 import com.fasterxml.jackson.databind.ObjectMapper;

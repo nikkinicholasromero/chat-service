@@ -1,4 +1,4 @@
-package com.chat.user.repository;
+package com.chat.common.repository;
 
 import org.springframework.data.repository.CrudRepository;
 

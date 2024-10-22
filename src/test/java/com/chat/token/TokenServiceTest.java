@@ -11,7 +11,7 @@ import com.chat.token.social.MicrosoftService;
 import com.chat.token.dto.MicrosoftTokenRequest;
 import com.chat.user.UserProfileService;
 import com.chat.token.dto.TokenRequest;
-import com.chat.user.repository.UserProfile;
+import com.chat.common.repository.UserProfile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

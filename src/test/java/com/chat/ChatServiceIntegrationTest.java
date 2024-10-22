@@ -1,7 +1,7 @@
 package com.chat;
 
-import com.chat.user.repository.UserProfile;
-import com.chat.user.repository.UserProfileRepository;
+import com.chat.common.repository.UserProfile;
+import com.chat.common.repository.UserProfileRepository;
 import com.chat.token.dto.TokenRequest;
 import com.chat.token.dto.TokenResponse;
 import com.chat.user.dto.*;

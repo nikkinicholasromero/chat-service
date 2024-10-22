@@ -1,34 +1,28 @@
-package com.chat.user.repository;
+package com.chat.common.repository;
 
 import com.chat.common.config.Generated;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import org.apache.commons.lang3.StringUtils;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
-@Embeddable
-public class UserProfileId implements Serializable {
-    @Column(name = "id")
-    private String id;
+@Entity
+@Table
+public class UserChannel extends BaseEntity<UserChannelId> implements Serializable {
+    @Id
+    private UserChannelId id;
 
     @Generated
-    protected UserProfileId() {
+    protected UserChannel() {
         // Note: Required by JPA. Do not use.
     }
 
-    public UserProfileId(String id) {
-        if (StringUtils.isBlank(id)) {
-            throw new IllegalArgumentException("id is required");
-        }
-
-        this.id = id.strip();
-    }
-
-    public String id() {
+    @Override
+    public UserChannelId id() {
         return id;
     }
 
@@ -39,7 +33,7 @@ public class UserProfileId implements Serializable {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserProfileId other = (UserProfileId) o;
+        UserChannel other = (UserChannel) o;
 
         return new EqualsBuilder()
                 .append(id, other.id)

@@ -1,4 +1,4 @@
-package com.chat.user.repository;
+package com.chat.common.repository;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.junit.jupiter.api.Test;
