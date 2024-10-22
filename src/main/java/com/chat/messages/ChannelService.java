@@ -14,16 +14,19 @@ public class ChannelService {
     private final UserProfileService userProfileService;
     private final UserChannelRepository userChannelRepository;
     private final ChannelRepository channelRepository;
+    private final MessageRepository messageRepository;
 
     public ChannelService(
             SecurityContextHelper securityContextHelper,
             UserProfileService userProfileService,
             UserChannelRepository userChannelRepository,
-            ChannelRepository channelRepository) {
+            ChannelRepository channelRepository,
+            MessageRepository messageRepository) {
         this.securityContextHelper = securityContextHelper;
         this.userProfileService = userProfileService;
         this.userChannelRepository = userChannelRepository;
         this.channelRepository = channelRepository;
+        this.messageRepository = messageRepository;
     }
 
     public List<ChannelResponse> getChannels() {
@@ -36,7 +39,8 @@ public class ChannelService {
                 .distinct()
                 .toList();
         List<Channel> channels = channelRepository.findByIdIn(channelIds);
-        // TODO: Given a list of channel, pull all conversation and transform to ChannelResponse object
+        List<Message> messages = messageRepository.findByChannelIdIn(channelIds);
+        // TODO: Transform to ChannelResponse object
 
         return List.of();
     }
