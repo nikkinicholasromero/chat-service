@@ -40,7 +40,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (StringUtils.isNotBlank(header) && header.startsWith(BEARER)) {
+        if (!request.getRequestURI().startsWith("/token") && StringUtils.isNotBlank(header) && header.startsWith(BEARER)) {
             Claims claims = jwtService.decodeJWT(header.replace(BEARER, StringUtils.EMPTY));
             String email = String.valueOf(claims.get(Claims.SUBJECT));
             String sessionId = claims.get(JwtService.CLAIMS_SESSION_ID, String.class);
